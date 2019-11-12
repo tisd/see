@@ -1,6 +1,8 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
 app = Flask("See")
 
+from worker import create_source_file, compile, get_program_output
+
 @app.route('/public/<path:path>')
 def send_public(path):
     return send_from_directory('public', path)
@@ -11,8 +13,15 @@ def hello():
 
 @app.route("/start", methods = ["POST"])
 def startCodeExecution():
-    print(request.json)
-    return {"msg": "Data submitted successfuly"}
+    create_source_file(request.json['source'])
+    err, output = compile()
+    if err:
+        return {'err': True, 'msg': err}
+    err, output = get_program_output()
+    if err:
+        return {'err': True, 'msg': err}
+    print(output.decode("utf-8") )
+    return {"output": output.decode("utf-8") }
 
 @app.route("/pause", methods = ["GET"])
 def pauseCodeExecution():

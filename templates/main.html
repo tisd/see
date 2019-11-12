@@ -37,7 +37,16 @@
 
     <div class="columns outerContainer is-gapless">
         <div class="column is-two-thirds">
-            <div id="editor">int x = 10;</div>
+            <div id="editor">
+#include <stdio.h>
+
+    int main(int argc, char **argv) {
+    int x = 10;
+    printf("Hello World");
+    x = 15;
+    return 0;
+}
+            </div>
             <div class="buttons centered">
                 <button onclick="start()" class="button is-success">START</button>
                 <button onclick="pause()" class="button is-info">PAUSE</button>

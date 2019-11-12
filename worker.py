@@ -4,35 +4,24 @@ import subprocess
 import lldb
 import os
 
-STD_PATH = '/temp/'
+STD_PATH = '/home/sd/code/c/'
 STD_FILENAME = 'source.c'
 STD_EXE = 'a.out'
 
 
 def create_source_file(src):
-    src = '''
-    # include <stdio.h>
-
-    int main(int argc, char **argv) {
-        int x = 10;
-        printf('Hello World');
-        x = 15;
-        return 0;
-    }
-
-    '''
-    f = open(STD_PATH + STD_FILENAME, 'w+')
+    f = open(STD_PATH + STD_FILENAME, 'w')
     f.write(src)
     f.close()
 
 
 def compile():
-    proc = subprocess.run(['clang', '-g', STD_PATH + STD_FILENAME])
+    proc = subprocess.run(['clang', '-g', STD_PATH + STD_FILENAME, '-o', STD_PATH + STD_EXE], capture_output=True)
     return proc.stderr, proc.stdout
 
 
 def get_program_output():
-    proc = subprocess.run([STD_PATH + STD_EXE])
+    proc = subprocess.run([STD_PATH + STD_EXE], capture_output=True)
     return proc.stderr, proc.stdout
 
 def load_in_lldb():

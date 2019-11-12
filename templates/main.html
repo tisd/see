@@ -1,29 +1,63 @@
 <html>
-    <head>
-        <title>See</title>
-        <style>
-         #editor {
-             position: absolute;
-             width: 1000px;
-             height: 700px;
-             border-color: black;
-             font-size: 25px;
-         }
-        </style>
-    </head>
-    <body>
-        <div id="editor">int x = 10;</div>
-        <script src="public/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="public/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
-        <script src="public/mode-c_cpp.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-         var editor = ace.edit("editor");
-         editor.setTheme("ace/theme/monokai");
-         var CMode = ace.require("ace/mode/c_cpp").Mode;
-         editor.session.setMode(new CMode());
-        </script>
-        <button>
-            Run
-        </button>
-    </body>
+
+<head>
+    <title>See</title>
+    <style>
+        .buttons {
+            /* margin-top: 7px; */
+            background: #2F3129;
+            padding-top: 7px;
+        }
+
+        .centered {
+            justify-content: center !important;
+        }
+
+        .outerContainer {
+            height: 94vh;
+        }
+
+        #editor {
+            width: 100%;
+            height: 100%;
+            border-color: black;
+            font-size: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="public/bulma.css">
+
+
+</head>
+
+<body>
+    <script src="public/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+    <script src="public/mode-c_cpp.js" type="text/javascript" charset="utf-8"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <div class="columns outerContainer is-gapless">
+        <div class="column is-two-thirds">
+            <div id="editor">int x = 10;</div>
+            <div class="buttons centered">
+                <button class="button is-success">START</button>
+                <button class="button is-info">PAUSE</button>
+                <button class="button is-danger">STOP</button>
+            </div>
+        </div>
+        <div class="column ">
+            Second column
+        </div>
+        <!-- <div class="column is-three-tenth">
+            Third column
+        </div> -->
+    </div>
+
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        var CMode = ace.require("ace/mode/c_cpp").Mode;
+        editor.session.setMode(new CMode());
+    </script>
+</body>
+
 </html>

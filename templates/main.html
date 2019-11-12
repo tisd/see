@@ -39,24 +39,48 @@
         <div class="column is-two-thirds">
             <div id="editor">int x = 10;</div>
             <div class="buttons centered">
-                <button class="button is-success">START</button>
-                <button class="button is-info">PAUSE</button>
-                <button class="button is-danger">STOP</button>
+                <button onclick="start()" class="button is-success">START</button>
+                <button onclick="pause()" class="button is-info">PAUSE</button>
+                <button onclick="stop()" class="button is-danger">STOP</button>
             </div>
         </div>
         <div class="column ">
             Second column
         </div>
-        <!-- <div class="column is-three-tenth">
-            Third column
-        </div> -->
     </div>
 
     <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
-        var CMode = ace.require("ace/mode/c_cpp").Mode;
-        editor.session.setMode(new CMode());
+        var editor = ace.edit("editor")
+        editor.setTheme("ace/theme/monokai")
+        var CMode = ace.require("ace/mode/c_cpp").Mode
+        editor.session.setMode(new CMode())
+
+        async function start() {
+            let source = editor.getValue()
+            const rawResponse = await fetch('http://127.0.0.1:5000/start', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ source: source })
+            });
+            const content = await rawResponse.json()
+            console.log(content)
+        }
+
+        async function pause() {
+            const rawResponse = await fetch('http://127.0.0.1:5000/pause', { method: "GET" })
+            const resp = await rawResponse.json()
+            console.log(resp)
+        }
+
+        async function stop() {
+            const rawResponse = await fetch('http://127.0.0.1:5000/stop', { method: "GET" })
+            const resp = await rawResponse.json()
+            console.log(resp)
+        }
+
     </script>
 </body>
 

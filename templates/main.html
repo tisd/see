@@ -1,8 +1,29 @@
 <html>
     <head>
         <title>See</title>
+        <style>
+         #editor {
+             position: absolute;
+             width: 1000px;
+             height: 700px;
+             border-color: black;
+             font-size: 25px;
+         }
+        </style>
     </head>
     <body>
-        <p>Hello World</p>
+        <div id="editor">int x = 10;</div>
+        <script src="public/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="public/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+        <script src="public/mode-c_cpp.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+         var editor = ace.edit("editor");
+         editor.setTheme("ace/theme/monokai");
+         var CMode = ace.require("ace/mode/c_cpp").Mode;
+         editor.session.setMode(new CMode());
+        </script>
+        <button>
+            Run
+        </button>
     </body>
 </html>

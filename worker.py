@@ -1,3 +1,5 @@
+# code execuation related functions
+
 import subprocess
 import lldb
 import os
@@ -28,6 +30,10 @@ def compile():
     proc = subprocess.run(['clang', '-g', STD_PATH + STD_FILENAME])
     return proc.stderr, proc.stdout
 
+
+def get_program_output():
+    proc = subprocess.run([STD_PATH + STD_EXE])
+    return proc.stderr, proc.stdout
 
 def load_in_lldb():
     # Path to executable

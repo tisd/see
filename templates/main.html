@@ -75,7 +75,7 @@
 
         async function start() {
             let source = editor.getValue()
-            const rawResponse = await fetch('http://127.0.0.1:5000/start', {
+            const rawResponse = await fetch('/start', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -89,13 +89,13 @@
         }
 
         async function pause() {
-            const rawResponse = await fetch('http://127.0.0.1:5000/pause', { method: "GET" })
+            const rawResponse = await fetch('/pause', { method: "GET" })
             const resp = await rawResponse.json()
             console.log(resp)
         }
 
         async function stop() {
-            const rawResponse = await fetch('http://127.0.0.1:5000/stop', { method: "GET" })
+            const rawResponse = await fetch('/stop', { method: "GET" })
             const resp = await rawResponse.json()
             console.log(resp)
         }

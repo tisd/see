@@ -5,7 +5,7 @@ import subprocess
 import os
 from subprocess import PIPE
 
-STD_PATH = '/home/zd/code/c/'
+STD_PATH = '/tmp/'
 STD_FILENAME = 'source.c'
 STD_EXE = 'a.out'
 
@@ -17,7 +17,7 @@ def create_source_file(src):
 
 
 def compile():
-    proc = subprocess.run(['gcc', '-g', STD_PATH + STD_FILENAME, '-o', STD_PATH + STD_EXE], stdout=PIPE, stderr=PIPE)
+    proc = subprocess.run(['clang', '-g', STD_PATH + STD_FILENAME, '-o', STD_PATH + STD_EXE], stdout=PIPE, stderr=PIPE)
     return proc.stderr, proc.stdout
 
 

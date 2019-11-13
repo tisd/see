@@ -21,7 +21,7 @@ def startCodeExecution():
     if err:
         return {'err': True, 'msg': err}
     print(output.decode("utf-8") )
-    return {"output": output.decode("utf-8") }
+    return jsonify({"output": output.decode("utf-8") })
 
 @app.route("/pause", methods = ["GET"])
 def pauseCodeExecution():
